@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+    /* Language and Environment */
+    "target": "ESNext",
+    "lib": [
+      "es2016",
+      "esnext"
+    ],
+    /* Modules */
+    "module": "ES6",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "forceConsistentCasingInFileNames": true,
+    /* Type Checking */
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/*.ts"],
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "esm": true,
+  }
+}
