@@ -14,4 +14,4 @@ suite(
   complete(),
   save({ file: 'reduce', version: '1.0.0' }),
   save({ file: 'reduce', format: 'chart.html' }),
-)
+);

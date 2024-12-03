@@ -3,12 +3,8 @@ export type Input = Array<Array<number>>;
 export function parseInput(data: string): Input {
   return data
     .trimEnd()
-    .split("\n")
-    .map((str) =>
-      str
-        .split(" ")
-        .map((n) => Number(n))
-    )
+    .split('\n')
+    .map((str) => str.split(' ').map((n) => Number(n)));
 }
 
 function isSafe(report: Array<number>): boolean {
