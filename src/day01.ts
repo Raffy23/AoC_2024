@@ -33,8 +33,5 @@ export function part2([inputLeft, inputRight]: Input): number {
     new Map<number, number>(),
   );
 
-  return inputLeft.reduce(
-    (sum, value) => sum + value * (counts.get(value) ?? 0),
-    0,
-  );
+  return inputLeft.reduce((sum, value) => sum + value * (counts.get(value) ?? 0), 0);
 }
