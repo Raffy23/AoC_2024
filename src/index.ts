@@ -5,6 +5,7 @@ import * as Day02 from './day02';
 import * as Day03 from './day03';
 import * as Day04 from './day04';
 import * as Day05 from './day05';
+import * as Day06 from './day06';
 
 const Days = new Map<string, () => number>([
   ['01 1', () => Day01.part1(Day01.parseInput(readInput('01')))],
@@ -17,6 +18,8 @@ const Days = new Map<string, () => number>([
   ['04 2', () => Day04.part2(Day04.parseInput(readInput('04')))],
   ['05 1', () => Day05.part1(Day05.parseInput(readInput('05')))],
   ['05 2', () => Day05.part2(Day05.parseInput(readInput('05')))],
+  ['06 1', () => Day06.part1(Day06.parseInput(readInput('06')))],
+  ['06 2', () => Day06.part2(Day06.parseInput(readInput('06')))],
 ]);
 
 const day = process.argv[2];
@@ -25,11 +28,22 @@ const part = process.argv[3];
 if (!!day && !!part) {
   const key = `${day} ${part}`;
   const fallback = () => `Day ${day}, Part ${part} does not exist!`;
+  const run = (f: () => number | string) => {
+    return () => {
+      console.time(`Day ${day}, Part ${part}`);
+      const r = f();
+      console.timeEnd(`Day ${day}, Part ${part}`);
 
-  console.log((Days.get(key) ?? fallback)());
+      return r;
+    };
+  };
+
+  console.log(run(Days.get(key) ?? fallback)());
 } else if (day === 'all') {
   Days.forEach((fn, day) => {
+    console.time(`Day ${day}`);
     console.log(`Day ${day}: ${fn()}`);
+    console.timeEnd(`Day ${day}`);
   });
 } else {
   console.error('Day or part is not defined!');
