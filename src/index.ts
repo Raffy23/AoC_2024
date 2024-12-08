@@ -7,6 +7,7 @@ import * as Day04 from './day04';
 import * as Day05 from './day05';
 import * as Day06 from './day06';
 import * as Day07 from './day07';
+import * as Day08 from './day08';
 
 const Days = new Map<string, () => number>([
   ['01 1', () => Day01.part1(Day01.parseInput(readInput('01')))],
@@ -23,6 +24,8 @@ const Days = new Map<string, () => number>([
   ['06 2', () => Day06.part2(Day06.parseInput(readInput('06')))],
   ['07 1', () => Day07.part1(Day07.parseInput(readInput('07')))],
   ['07 2', () => Day07.part2(Day07.parseInput(readInput('07')))],
+  ['08 1', () => Day08.part1(Day08.parseInput(readInput('08')))],
+  ['08 2', () => Day08.part2(Day08.parseInput(readInput('08')))],
 ]);
 
 const day = process.argv[2];
