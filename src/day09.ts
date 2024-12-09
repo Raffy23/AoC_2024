@@ -48,6 +48,8 @@ export function part2(data: string): number {
   let checkSum = 0;
   let checkSumIndex = 0;
 
+  let lastFileIdx = data.length - 1;
+
   const consumed = new Set<number>();
 
   let i = 0;
@@ -65,7 +67,7 @@ export function part2(data: string): number {
       checkSumIndex += file;
     }
 
-    let nextCandidate = data.length - 1;
+    let nextCandidate = lastFileIdx;
     while (nextCandidate >= i && space > 0) {
       const lastFileID = nextCandidate / 2;
       let lastFileSize = Number(data[nextCandidate]);
@@ -86,6 +88,9 @@ export function part2(data: string): number {
     }
 
     checkSumIndex += space;
+    while (consumed.has(lastFileIdx / 2)) {
+      lastFileIdx -= 2;
+    }
   }
 
   return checkSum;
