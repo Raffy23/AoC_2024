@@ -16,8 +16,9 @@ import * as Day13 from './day13';
 import * as Day14 from './day14';
 import * as Day15 from './day15';
 import * as Day16 from './day16';
+import * as Day17 from './day17';
 
-const Days = new Map<string, () => number>([
+const Days = new Map<string, () => number | string | bigint>([
   ['01 1', () => Day01.part1(Day01.parseInput(readInput('01')))],
   ['01 2', () => Day01.part2(Day01.parseInput(readInput('01')))],
   ['02 1', () => Day02.part1(Day02.parseInput(readInput('02')))],
@@ -50,6 +51,8 @@ const Days = new Map<string, () => number>([
   ['15 2', () => Day15.part2(Day15.parseInput(readInput('15')))],
   ['16 1', () => Day16.part1(Day16.parseInput(readInput('16')))],
   ['16 2', () => Day16.part2(Day16.parseInput(readInput('16')))],
+  ['17 1', () => Day17.part1(Day17.parseInput(readInput('17')))],
+  ['17 2', () => Day17.part2(Day17.parseInput(readInput('17')))],
 ]);
 
 const day = process.argv[2];
@@ -58,7 +61,7 @@ const part = process.argv[3];
 if (!!day && !!part) {
   const key = `${day} ${part}`;
   const fallback = () => `Day ${day}, Part ${part} does not exist!`;
-  const run = (f: () => number | string) => {
+  const run = (f: () => number | bigint | string) => {
     return () => {
       console.time(`Day ${day}, Part ${part}`);
       const r = f();
