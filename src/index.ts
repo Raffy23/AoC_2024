@@ -19,6 +19,7 @@ import * as Day16 from './day16';
 import * as Day17 from './day17';
 import * as Day18 from './day18';
 import * as Day19 from './day19';
+import * as Day20 from './day20';
 
 const Days = new Map<string, () => number | string | bigint>([
   ['01 1', () => Day01.part1(Day01.parseInput(readInput('01')))],
@@ -59,6 +60,8 @@ const Days = new Map<string, () => number | string | bigint>([
   ['18 2', () => Day18.part2(Day18.parseInput(readInput('18')))],
   ['19 1', () => Day19.part1(Day19.parseInput(readInput('19')))],
   ['19 2', () => Day19.part2(Day19.parseInput(readInput('19')))],
+  ['20 1', () => Day20.part1(Day20.parseInput(readInput('20')))],
+  ['20 2', () => Day20.part2(Day20.parseInput(readInput('20')))],
 ]);
 
 const day = process.argv[2];
