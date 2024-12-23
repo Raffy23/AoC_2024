@@ -25,8 +25,6 @@ type Input = { state: State; program: Array<number> };
 export function parseInput(data: string): Input {
   const [registers, program] = data.split('\n\n');
 
-  console.log(program);
-
   return {
     state: {
       a: BigInt(registers.match(/Register A: (\d+)/)![1]),
