@@ -23,6 +23,7 @@ import * as Day20 from './day20';
 import * as Day21 from './day21';
 import * as Day22 from './day22';
 import * as Day23 from './day23';
+import * as Day24 from './day24';
 
 const Days = new Map<string, () => number | string | bigint>([
   ['01 1', () => Day01.part1(Day01.parseInput(readInput('01')))],
@@ -71,6 +72,8 @@ const Days = new Map<string, () => number | string | bigint>([
   ['22 2', () => Day22.part2(Day22.parseInput(readInput('22')))],
   ['23 1', () => Day23.part1(Day23.parseInput(readInput('23')))],
   ['23 2', () => Day23.part2(Day23.parseInput(readInput('23')))],
+  ['24 1', () => Day24.part1(Day24.parseInput(readInput('24')))],
+  ['24 2', () => Day24.part2(Day24.parseInput(readInput('24')))],
 ]);
 
 const day = process.argv[2];
