@@ -24,6 +24,8 @@ import * as Day20 from './day20';
 import * as Day21 from './day21';
 import * as Day22 from './day22';
 import * as Day23 from './day23';
+import * as Day24 from './day24';
+import * as Day25 from './day25';
 
 type Day<Input> = {
   parseInput: (data: string) => Input;
@@ -34,7 +36,8 @@ type Day<Input> = {
 type Result = {
   min: number;
   max: number;
-  avg: number;
+  mean: number;
+  stdDev: number;
   samples: number;
 };
 
@@ -61,10 +64,13 @@ function bench<I, F extends (input: I) => any>(f: F, input: I): Result {
     measures.push(t1 - t0);
   }
 
+  const mean = measures.reduce((sum, value) => sum + value, 0) / measures.length;
+
   return {
     min: Math.min(...measures),
     max: Math.max(...measures),
-    avg: measures.reduce((sum, value) => sum + value, 0) / measures.length,
+    mean,
+    stdDev: Math.sqrt(measures.map((x) => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / measures.length),
     samples: measures.length,
   };
 }
@@ -116,16 +122,20 @@ const Days = new Map<string, { f: (arg0: any) => number | string | bigint; p: (d
   ['22 2', { f: Day22.part2, p: Day22.parseInput, i: readInput('22') }],
   ['23 1', { f: Day23.part1, p: Day23.parseInput, i: readInput('23') }],
   ['23 2', { f: Day23.part2, p: Day23.parseInput, i: readInput('23') }],
+  ['24 1', { f: Day24.part1, p: Day24.parseInput, i: readInput('24') }],
+  ['24 2', { f: Day24.part2, p: Day24.parseInput, i: readInput('24') }],
+  ['25 1', { f: Day25.part1, p: Day25.parseInput, i: readInput('25') }],
 ]);
 
 const padding = 9;
-console.log('Day\t      max   \t      min   \t      avg   \tsamples');
+console.log('Day\t      max   \t      min   \t     mean ∓ std dev  \tsamples');
 Days.entries().forEach(([day, { f, p, i }]) => {
-  const { min, max, avg, samples } = bench((input: string) => f(p(input)), i as any);
+  const { min, max, mean, samples, stdDev } = bench((input: string) => f(p(input)), i as any);
 
   const maxF = max.toFixed(3).padStart(padding, ' ');
   const minF = min.toFixed(3).padStart(padding, ' ');
-  const avgF = avg.toFixed(3).padStart(padding, ' ');
+  const meanF = mean.toFixed(3).padStart(padding, ' ');
+  const stdDevF = stdDev.toFixed(3).padEnd(4, ' ');
 
-  console.log(`${day}\t${maxF} ms\t${minF} ms\t${avgF} ms\t${samples.toString().padStart(7, ' ')}`);
+  console.log(`${day}\t${maxF} ms\t${minF} ms\t${meanF} ∓ ${stdDevF} ms\t${samples.toString().padStart(7, ' ')}`);
 });
